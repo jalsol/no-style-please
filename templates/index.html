@@ -13,8 +13,6 @@
 {% for page in pages %}
     <li>
         <a href="{{ page.permalink | safe }}">{% if page.date and not config.extra.no_list_date %}{{ page.date }} - {% endif %}{{ page.title }}</a>
-        <br />
-        {{ page.description }}
     </li>
 {% endfor %}
 </ul>
