@@ -6,6 +6,10 @@
         <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
 
+        {% set empty = {"title": false, "description": false, "permalink": false, "extra": {"author": false, "image": false}} %}
+        {% set page = page | default(value=empty) %}
+        {% set section = section | default(value=empty) %}
+
         {% if page.title %}
         {% set title = page.title %}
         {% elif section.title %}
@@ -86,11 +90,11 @@
             }
         </script>
         {% endblock metatags %}
-        {% if config.generate_feed %}
         {% block feed %}
+        {% if config.generate_feeds %}
         <link rel="alternate" type="application/atom+xml" title="RSS" href="{{ get_url(path="atom.xml", trailing_slash=false) }}">
-        {% endblock feed %}
         {% endif %}
+        {% endblock feed %}
         {% block css %}
         <link rel="stylesheet" href="{{ get_url(path='style.css', trailing_slash=false) | safe }}"/>
         {% endblock css %}
